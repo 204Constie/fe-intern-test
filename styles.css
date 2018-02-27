@@ -3,7 +3,11 @@
   width: 90vw;
   display: flex;
   flex-direction: row;
-
+}
+@media only screen and (max-width: 500px) {
+  .masonry_wrapper {
+    flex-wrap: wrap;
+  }
 }
 .masonry_column {
   flex-basis: 25%;
@@ -12,7 +16,15 @@
   display: flex;
   flex-direction: column;
 }
-
+@media only screen and (max-width: 500px) {
+  .masonry_column {
+    flex-basis: 50%;
+    width: 50%;
+  }
+}
+.img_wrapper {
+  width: 100%;
+}
 .masonry_img {
-  max-width: 100%;
+  width: 100%;
 }

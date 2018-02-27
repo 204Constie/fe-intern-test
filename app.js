@@ -29,7 +29,8 @@ var col4 = $('#col4');
 
 
 function photosService(){
-  var url = 'https://codewise-fe-api.herokuapp.com/photos?offset=' + (offsetCounter*limit) + '&limit=' + limit + '&placeholders=1';
+  // var url = 'https://codewise-fe-api.herokuapp.com/photos?offset=' + (offsetCounter*limit) + '&limit=' + limit + '&placeholders=1';
+  var url = 'https://codewise-fe-api.herokuapp.com/photos?offset=' + (offsetCounter*limit) + '&limit=' + limit ;
   $.get( url , function( data ) {
     offsetCounter++;
     console.log('photosService result: ', data);
@@ -42,26 +43,32 @@ function photosDisplayer(photos){
 
   for(var i=0; i<photos.length; i += 4){
     col1.append(
-      '<img class="masonry_img" src="' + photos[i].url + '" alt="Smiley face">' + '\n'
+      '<div clss="img_wrapper">' + '\n' +
+      '<img class="masonry_img" src="' + photos[i].url + '" alt="Smiley face">' + '\n' +
+      '</div>' + '\n'
     );
     col2.append(
-      '<img class="masonry_img" src="' + photos[i+1].url + '" alt="Smiley face">' + '\n'
+      '<div clss="img_wrapper">' + '\n' +
+      '<img class="masonry_img" src="' + photos[i+1].url + '" alt="Smiley face">' + '\n' +
+      '</div>' + '\n'
     );
     col3.append(
-      '<img class="masonry_img" src="' + photos[i+2].url + '" alt="Smiley face">' + '\n'
+      '<div clss="img_wrapper">' + '\n' +
+      '<img class="masonry_img" src="' + photos[i+2].url + '" alt="Smiley face">' + '\n' +
+      '</div>' + '\n'
     );
     col4.append(
-      '<img class="masonry_img" src="' + photos[i+3].url + '" alt="Smiley face">' + '\n'
+      '<div clss="img_wrapper">' + '\n' +
+      '<img class="masonry_img" src="' + photos[i+3].url + '" alt="Smiley face">' + '\n' +
+      '</div>' + '\n'
     );
   }
 };
 
 function infiniteScrollService(){
   windowElement.scroll(function () {
-    // if ($(document).height() - win.height() == win.scrollTop())
    if (windowElement.scrollTop() >= documentElement.height() - windowElement.height()) {
       //load new photos from server
-      console.log('infinite scroll');
       photosService();
    }
  });
@@ -70,27 +77,9 @@ function infiniteScrollService(){
 function init(){
   photosService();
   infiniteScrollService();
-  // setTimeout(function(){
-  //    photosService();
-  //  }, 1000);
 };
 
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 })(window, document, jQuery);
